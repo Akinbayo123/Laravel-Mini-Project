@@ -14,12 +14,9 @@ use App\Http\Controllers\EmployeeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 
-Route::get('/index', [EmployeeController::class, 'index'])->name('index');
+Route::get('/', [EmployeeController::class, 'index'])->name('index');
 Route::get('/show', [EmployeeController::class, 'show'])->name('show');
 Route::post('/create', [EmployeeController::class, 'create'])->name('create');
 Route::delete('/employee/delete/{id}', [EmployeeController::class, 'destroy'])->name('delete');
