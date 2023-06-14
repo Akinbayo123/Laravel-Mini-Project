@@ -15,6 +15,7 @@
                                     <th scope="col">Role</th>
                                     <th scope="col">Location</th>
                                     <th scope="col">Salary</th>
+                                    <th scope="col">Wallet</th>
                                     <th scope="col">Action</th>
 
                                 </tr>
@@ -29,6 +30,22 @@
                                 <td>{{ $employee->role }}</td>
                                 <td>{{ $employee->location }}</td>
                                 <td>${{ $employee->salary }}</td>
+
+                                <td class="">
+                                    <div class="d-flex">
+
+                                      <div>
+                                            <a class="btn btn-primary mx-3" href="{{ route('edit',$employee->id) }}" >Credit Wallet</a>
+                                    </div>
+
+                                        <form action="{{ route('delete',$employee->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger" type="submit">View Wallet</button>
+                                        </form>
+
+                                    </div>
+                                </td>
 
                                 <td class="">
                                     <div class="d-flex">
