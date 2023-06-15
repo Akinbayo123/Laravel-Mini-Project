@@ -22,3 +22,6 @@ Route::post('/create', [EmployeeController::class, 'create'])->name('create');
 Route::delete('/employee/delete/{id}', [EmployeeController::class, 'destroy'])->name('delete');
 Route::get('/employee/edit/{employee}', [EmployeeController::class, 'edit'])->name('edit');
 Route::put('/employee/update/{employee}', [EmployeeController::class, 'update'])->name('update');
+Route::get('/show_wallet/{id}', [EmployeeController::class, 'show_wallet'])->name('show_wallet');
+Route::put('/employee/activate/{id}', [EmployeeController::class, 'activate'])->name('activate');
+Route::get('/employee/credit_show', [EmployeeController::class, 'activate'])->name('credit_show');
