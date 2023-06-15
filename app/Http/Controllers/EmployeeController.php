@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\EmployeeRequest;
-use App\Models\Employee;
+use Carbon\Carbon;
 use App\Models\Wallet;
+use App\Models\Employee;
 use Illuminate\Http\Request;
+use App\Http\Requests\EmployeeRequest;
 
 class EmployeeController extends Controller
 {
@@ -50,19 +51,42 @@ class EmployeeController extends Controller
     public function show_wallet($id)
     {
         $wallet = Wallet::where('employee_id', $id)->first();
-       // dd($wallet->id);
-        return view('employee.wallet', compact('wallet'));
+        $wallet_date = Carbon::parse($wallet->last_credited)->format('d-m-Y');
+        $wallet_time = Carbon::parse($wallet->last_credited)->toTimeString();
+        
+      
+        return view('employee.wallet', compact(['wallet','wallet_date','wallet_time']));
     }
     public function activate(Wallet $id)
     {
         $id->forceFill([
-            'wallet_status' =>'1',  
+            'wallet_status' => '1',
         ])->save();
         return back()->with('message', 'Wallet successfully activated');
     }
-    public function create_show()
+    public function credit_show($id)
     {
-        return view('employee.credit');
-    }
+        $employee = Wallet::where('employee_id', $id)->first();
 
+        if ($employee->wallet_status == 1) {
+            return view('employee.credit', compact('id'));
+        } else {
+            return back()->with('error', 'Wallet Not Yet Activated');
+        }
+    }
+    public function credit(Request $request, $id)
+    {
+        $employee = Wallet::where('employee_id', $id)->first();
+
+        $request->validate([
+            'amount' => ['required', 'numeric'],
+        ]);
+
+        $employee->forceFill([
+            'balance' => $employee->balance + $request->amount,
+            'last_credited' => now(),
+        ])->save();
+
+        return to_route('index')->with('message', 'Employee Succesfully Credited');
+    }
 }

@@ -6,11 +6,11 @@
                     <div class="border border-3 border-primary"></div>
                     <div class="card bg-white">
                         <div class="card-body p-5">
-                            <form class="mb-3 mt-md-4" method="POST" action="">
+                            <form class="mb-3 mt-md-4" method="POST" action="{{ route('credit',$id) }}">
                                 @csrf
+                                
                                 <h3 class="mb-2 fw-bold">Credit Employee
                                 </h3>
-
                                 <div class="mb-3">
                                     <label for="salary" class="form-label fw-bold">Amount</label>
                                     <input type="number" value="{{ old('amount') }}" name="amount" class="form-control" id="email"
@@ -20,7 +20,7 @@
                                     @enderror
                                 </div>
                                 <div class="d-grid">
-                                    <button class="btn btn-outline-dark" type="submit">Submit</button>
+                                    <button class="btn btn-outline-dark" type="submit">Credit</button>
                                 </div>
                             </form>
 

@@ -8,7 +8,7 @@
                         <div class="card-body p-5">
                             @if ($wallet->wallet_status != 0)
                                 <h4 class="text-center">Available Balance: ${{ $wallet->balance }}</h4>
-                                <h5 class="mt-5">Date Last Created: </h5>
+                                <h6 class="mt-5 text-center">Date Last Credited: <span>{{ $wallet_date }}</span> </h6>
                             @else
                                 <p>Wallet Not Yet Activated</p>
                                 <form action="{{ route('activate', $wallet->id) }}" method="post">
