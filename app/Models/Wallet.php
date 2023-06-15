@@ -12,6 +12,6 @@ class Wallet extends Model
     
     public function employee()
     {
-        return $this->belongsTo(Employee::class)->withDefault("null");
+        return $this->belongsTo(Employee::class);
     }
 }

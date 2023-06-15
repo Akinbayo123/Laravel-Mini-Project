@@ -11,6 +11,6 @@ class Employee extends Model
     use HasFactory;
     public function wallets()
     {
-        return $this->hasOne(Wallet::class,'employee_id')->withDefault('NULL');
+        return $this->hasOne(Wallet::class,'employee_id');
     }
 }
