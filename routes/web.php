@@ -13,16 +13,18 @@ use App\Http\Controllers\EmployeeController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/', [EmployeeController::class, 'index']);
 
 
-
-Route::get('/', [EmployeeController::class, 'index'])->name('index');
-Route::get('/show', [EmployeeController::class, 'show'])->name('show');
-Route::post('/create', [EmployeeController::class, 'create'])->name('create');
-Route::delete('/employee/delete/{id}', [EmployeeController::class, 'destroy'])->name('delete');
-Route::get('/employee/edit/{employee}', [EmployeeController::class, 'edit'])->name('edit');
-Route::put('/employee/update/{employee}', [EmployeeController::class, 'update'])->name('update');
-Route::get('/show_wallet/{id}', [EmployeeController::class, 'show_wallet'])->name('show_wallet');
-Route::put('/employee/activate/{id}', [EmployeeController::class, 'activate'])->name('activate');
-Route::get('/employee/credit_show/{id}', [EmployeeController::class, 'credit_show'])->name('credit_show');
-Route::post('/credit/{id}', [EmployeeController::class, 'credit'])->name('credit');
+Route::controller(EmployeeController::class)->prefix('employee')->group(function () {
+    Route::get('/',  'index')->name('index');
+    Route::get('/show', 'show')->name('show');
+    Route::post('/create',  'create')->name('create');
+    Route::delete('/delete/{id}', 'destroy')->name('delete');
+    Route::get('/edit/{employee}',  'edit')->name('edit');
+    Route::put('/update/{employee}', 'update')->name('update');
+    Route::get('/show_wallet/{id}', 'show_wallet')->name('show_wallet');
+    Route::put('activate/{id}', 'activate')->name('activate');
+    Route::get('credit_show/{id}', 'credit_show')->name('credit_show');
+    Route::put('/credit/{id}', 'credit')->name('credit');
+});

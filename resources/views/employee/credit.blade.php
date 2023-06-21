@@ -8,7 +8,7 @@
                         <div class="card-body p-5">
                             <form class="mb-3 mt-md-4" method="POST" action="{{ route('credit',$id) }}">
                                 @csrf
-                                
+                                @method('PUT')
                                 <h3 class="mb-2 fw-bold">Credit Employee
                                 </h3>
                                 <div class="mb-3">

@@ -16,8 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('employee_id');
             $table->integer('balance')->default(0);
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
-            $table->integer('wallet_status')->default(0);
-            $table->string('last_credited')->nullable();
+            $table->boolean('wallet_status')->default(0);
+            $table->dateTime('last_credited')->nullable();
             $table->timestamps();
         });
     }
