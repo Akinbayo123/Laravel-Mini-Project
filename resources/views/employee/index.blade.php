@@ -8,50 +8,64 @@
                     <table class="table caption-top">
                         <caption class="h2 fw-bold">Employees</caption>
                         <thead>
-                            
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Role</th>
-                                    <th scope="col">Location</th>
-                                    <th scope="col">Salary</th>
-                                    <th scope="col">Action</th>
 
-                                </tr>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Role</th>
+                                <th scope="col">Location</th>
+                                <th scope="col">Salary</th>
+                                <th scope="col">Wallet</th>
+                                <th scope="col">Action</th>
+
+                            </tr>
                         </thead>
                         <tbody>
-                        @forelse ($employees as $employee)
-                        
+                            @forelse ($employees as $employee)
+                                <tr>
+                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <td>{{ $employee->name }}</td>
+                                    <td>{{ $employee->role }}</td>
+                                    <td>{{ $employee->location }}</td>
+                                    <td>${{ $employee->salary }}</td>
 
-                            <tr>
-                                <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $employee->name }}</td>
-                                <td>{{ $employee->role }}</td>
-                                <td>{{ $employee->location }}</td>
-                                <td>${{ $employee->salary }}</td>
+                                    <td class="">
+                                        <div class="d-flex">
 
-                                <td class="">
-                                    <div class="d-flex">
+                                            <div>
+                                                <a class="btn btn-primary mx-3"
+                                                    href="{{ route('credit_show', $employee->id) }}">Credit</a>
+                                            </div>
 
-                                      <div>
-                                            <a class="btn btn-primary mx-3" href="{{ route('edit',$employee->id) }}" >Edit</a>
-                                    </div>
+                                            <a class="btn btn-primary" href="{{ route('show_wallet', $employee->id) }}">View </a>
 
-                                        <form action="{{ route('delete',$employee->id) }}" method="post" onsubmit="return confirm('Are you sure?');">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger" type="submit">Delete</button>
-                                        </form>
+                                        </div>
+                                    </td>
 
-                                    </div>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="5">
-                                    No record
-                                </td>
-                            </tr>
+                                    <td class="">
+                                        <div class="d-flex">
+
+                                            <div>
+                                                <a class="btn btn-primary mx-3"
+                                                    href="{{ route('edit', $employee->id) }}">Edit</a>
+                                            </div>
+
+                                            <form action="{{ route('delete', $employee->id) }}" method="post"
+                                                onsubmit="return confirm('Are you sure?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger" type="submit">Delete</button>
+                                            </form>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="5">
+                                        No record
+                                    </td>
+                                </tr>
                             @endforelse
                         </tbody>
                     </table>

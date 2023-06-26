@@ -33,6 +33,11 @@
         {{ session('message') }}
         </h6> 
             @endif
+            @if (session()->has('error'))
+            <h6 class="alert alert-danger">
+            {{ session('error') }}
+            </h6> 
+                @endif
     </div>
 
     {{ $slot }}
