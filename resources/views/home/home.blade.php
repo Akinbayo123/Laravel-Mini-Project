@@ -5,7 +5,7 @@
             <div class="col-lg-7 mx-auto text-center">
                 <h1 class="display-4 text-white">Welcome to Employee Management</h1>
                 <p class="text-white my-3">Efficiently manage your employees with our comprehensive employee management system.</p>
-                <a href="" class="btn1 me-2 btn-primary">Get Started</a>
+                <a href="{{ route('index') }}" class="btn1 me-2 btn-primary">Get Started</a>
             </div>
         </div>
     </div>
