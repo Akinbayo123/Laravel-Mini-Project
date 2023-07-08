@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\Employee;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,8 +14,8 @@ class Wallet extends Model
         'last_credited'=>'datetime:Y-m-d',
     ];
     
-    public function employee()
+    public function user()
     {
-        return $this->belongsTo(Employee::class);
+        return $this->belongsTo(User::class);
     }
 }

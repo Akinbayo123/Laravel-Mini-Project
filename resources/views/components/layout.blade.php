@@ -8,25 +8,67 @@
     <title>Employee Management</title>
     <base href="/public">
     <link rel="stylesheet" href="css/bootstrap.min.css">  
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css"> 
+
+    <link rel="stylesheet" href="fontawesome-free-6.1.1-web/css/all.css" />
 </head>
 
 <body>
-   
-    <header class="py-3 mb-4 border-bottom bg-light">
-        <div class="d-flex flex-wrap justify-content-center container">
-            <a href="todo.php" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-                <span class="fs-4">Employee Management</span>
+    <nav class="navbar navbar-expand-lg py-3 sticky-top navbar-light bg-white">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <span class="fs-4 text-dark text-decoration-none fw-bold">Employee Management.</span>
             </a>
-    
-            <ul class="nav nav-pills">
-                <li class="nav-item"><a href="" class="nav-link ms-4 " aria-current="page"></a></li>
-                <li class="nav-item"><a href="{{ route('index') }}" class="nav-link active" aria-current="page">Home</a></li>
-                <li class="nav-item"><a href="{{ route('show') }}" class="nav-link bg-primary text-white mx-4">Add Employee</a></li>
-               
-            </ul>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('home') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('home') }}">Contact</a>
+                    </li>
+                    @auth  
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('index') }}">Dashboard</a>
+                    </li>
+                    @endauth
+                    @if (!Auth::user())
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">Login</a>
+                    </li>
+                    @endif
+                  
+                    
+                  
+                    @auth
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ auth()->user()->name }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{ route('profile') }}">Profile</a></li>
+                            
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                <button class="dropdown-item">Logout</button>
+                                </form>
+                            </li>
+
+                        </ul>
+                    </li>
+                    @endauth
+                   
+            </div>
         </div>
-    </header>
+    </nav>
+
+
+
+
     <div class="text-center">
         @if (session()->has('message'))
         <h6 class="alert alert-success">
@@ -42,8 +84,14 @@
 
     {{ $slot }}
 
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-    <script src="js/bootstrap.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <footer class="footer bg-dark text-center p-4 mt-4">
+        <div class="container">
+            <p>© 2023 Employee Management. All rights reserved.</p>
+        </div>
+    </footer>
+
+  
+    <script src="js/bootstrap.min.js"  crossorigin="anonymous"></script>
 </body>
 
 </html>
