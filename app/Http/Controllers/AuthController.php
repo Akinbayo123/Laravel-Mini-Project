@@ -20,7 +20,7 @@ class AuthController extends Controller
         if (auth()->attempt($formFields)) {
             $request->session()->regenerate();
 
-            return to_route('index')->with('message', 'Welcome!');
+            return to_route('index')->with('message', 'Welcomegi!');
         }
 
         return back()->withErrors(['email' => 'Invalid Credentials'])->onlyInput('email');
