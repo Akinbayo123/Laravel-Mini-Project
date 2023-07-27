@@ -36,7 +36,7 @@ class EmployeeController extends Controller
         ]);
         $id->update($form);
 
-        return back()->with('message', 'successfully updated');
+        return back()->with('message', 'Successfully updated');
     }
     public function password_update(Request $request, User $user)
     {

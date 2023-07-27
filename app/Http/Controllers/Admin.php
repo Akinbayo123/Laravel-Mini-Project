@@ -49,7 +49,7 @@ class Admin extends Controller
     {
         $id->delete();
 
-        return back()->with('message', 'Deleted successfully');
+        return back()->with('message', 'Succesfully Deleted');
     }
     public function edit(User $employee)
     {

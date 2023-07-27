@@ -34,6 +34,8 @@ Route::controller(EmployeeController::class)->prefix('employee')->middleware('au
     Route::post('/update_details/{id}',  'update_details')->name('update_details');
     Route::post('/password_update/{user}',  'password_update')->name('password_update');
 });
+
+
 //Admin Controller
 
 Route::controller(Admin::class)->prefix('admin')->middleware('auth','admin')->group(function () {
@@ -45,6 +47,4 @@ Route::controller(Admin::class)->prefix('admin')->middleware('auth','admin')->gr
     Route::put('/update/{employee}', 'update')->name('update');
     Route::get('credit_show/{id}', 'credit_show')->name('credit_show');
     Route::put('/credit/{id}', 'credit')->name('credit');
-  
-  
 });
