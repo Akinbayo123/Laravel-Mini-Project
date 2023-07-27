@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class EmployeeRequest extends FormRequest
@@ -21,14 +22,15 @@ class EmployeeRequest extends FormRequest
      */
     public function rules(): array
     {
-        
-            
-            return [
-                'name'=>['required'],
-                'role'=>['required'],
-                'location'=>['required'],
-                'salary'=>['required','integer'],
-            ];
-        
+
+
+        return [
+            'name' => ['required'],
+            'email' => ['required', 'email', Rule::unique('users', 'email')],
+            'password' => 'required|confirmed|min:6',
+            'role' => ['required'],
+            'location' => ['required'],
+            'salary' => ['required', 'integer'],
+        ];
     }
 }
