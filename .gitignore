@@ -18,3 +18,5 @@ yarn-error.log
 /.idea
 /.vscode
 /public
+
+/public/fontawesome-free-6.1.1-web
