@@ -27,6 +27,7 @@ class EmployeeController extends Controller
     {
         return view('Employees.profile');
     }
+    //update employee details
     public function update_details(Request $request, User $id)
     {
         

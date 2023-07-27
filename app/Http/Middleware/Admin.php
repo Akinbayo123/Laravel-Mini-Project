@@ -14,6 +14,7 @@ class Admin
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
+    //Admin Middleware
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::user()->user_type != 1) {
